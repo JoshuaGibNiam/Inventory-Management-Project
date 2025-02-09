@@ -1,7 +1,7 @@
 from item import Item
 class Inventory:
     def __init__(self):
-        self.items = {"Dry-fit shirts": Item("Dry-fit shirts", 5)}
+        self.items = {}
 
     def add_item(self, item: str):
         if item in self.items:
@@ -9,5 +9,9 @@ class Inventory:
         else:
             self.items.update({item: Item(item, 1)})
         print("Item(s) added successfully.")
+
+
+inv = Inventory()
+inv.add_item("Dry-fit shirts")
 
 
