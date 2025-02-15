@@ -3,6 +3,11 @@ class Inventory:
     def __init__(self):
         self.items = {}
 
+    def is_item(self, item):
+        if item in self.items:
+            return True
+        else:
+            return False
     def add_item(self, item: str):
         if item in self.items:
             self.items[item].quantity += 1
@@ -15,7 +20,6 @@ class Inventory:
             self.items[item].quantity -= quantity
             if self.items[item].quantity <= 0:
                 del self.items[item]
-
         else:
             print("Item not found")
 

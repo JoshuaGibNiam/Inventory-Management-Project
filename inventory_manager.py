@@ -27,12 +27,17 @@ class InventoryManager:
             return True
         elif command == "remove":
             item = input('Enter item name: ')
-            quantity = self.validated_integer_input(f"How many {item} would you like to remove?",
+            if self.inventory.is_item(item):
+                quantity = self.validated_integer_input(f"How many {item} would you like to remove?",
                                                     1, 100)
-            for x in range(quantity):
-                Inventory().remove_item(item)
 
-            return True
+                for x in range(quantity):
+                    Inventory().remove_item(item)
+
+                return True
+            else:
+                print("Item does not exist")
+                return True
 
         elif command == "view":
             Inventory.view_inventory()
