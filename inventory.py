@@ -19,13 +19,10 @@ class Inventory:
         else:
             print("Item not found")
 
-    def report_items(self):
-        pass
+    def view_inventory(self):
+        if self.items:
+            for name, item in self.items.items():
+                print(f"{name}: {item.quantity}")
 
-
-inv = Inventory()
-inv.add_item("Dry-fit shirts")
-inv.add_item("Dry-fit shirts")
-inv.remove_item("Dry-fit shirts", 1)
 
 
