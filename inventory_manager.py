@@ -54,9 +54,12 @@ class InventoryManager:
             return False
 
     def run(self):
-        command = input("What would you like to do (add/remove/view/exit?: ")
-        while self.process_command(command):
-            pass
+        while True:
+            command = input("What would you like to do (add/remove/view/exit?: ")
+            if self.process_command(command):
+                pass
+            else:
+                break
 
 
 
