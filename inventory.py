@@ -23,6 +23,9 @@ class Inventory:
         if self.items:
             for name, item in self.items.items():
                 print(f"{name}: {item.quantity}")
+            print("End of inventory. \n")
+        else:
+            print("Inventory is empty.")
 
 
 
