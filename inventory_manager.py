@@ -19,20 +19,20 @@ class InventoryManager:
         """Process user command to add items, view etc."""
         if command == 'add':
             item = input('Enter item name: ')
-            quantity = self.validated_integer_input(f"How many {item} would you like to add?",
+            quantity = self.validated_integer_input(f"How many {item}(s) would you like to add?",
                                          1, 100)
             for x in range(quantity):
-                Inventory().add_item(item)
+                self.inventory.add_item(item)
             print("Successfully added item(s)")
             return True
         elif command == "remove":
             item = input('Enter item name: ')
             if self.inventory.is_item(item):
-                quantity = self.validated_integer_input(f"How many {item} would you like to remove?",
+                quantity = self.validated_integer_input(f"How many {item}(s) would you like to remove?",
                                                     1, 100)
 
                 for x in range(quantity):
-                    Inventory().remove_item(item)
+                    self.inventory.remove_item(item)
 
                 return True
             else:
@@ -40,7 +40,7 @@ class InventoryManager:
                 return True
 
         elif command == "view":
-            Inventory.view_inventory()
+            self.inventory.view_inventory()
             return True
 
         elif command == "exit":
@@ -51,7 +51,7 @@ class InventoryManager:
                 return True
         else:
             print("Invalid command")
-            return False
+            return True
 
     def run(self):
         while True:
