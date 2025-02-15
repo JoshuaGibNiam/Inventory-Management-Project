@@ -1,19 +1,19 @@
 from inventory import Inventory
 class InventoryManager:
-    def __init__(self, inventory):
+    def __init__(self):
         self.inventory = Inventory()
 
     def validated_integer_input(self, prompt: str, min_value: int | None = None,
         max_value: int | None = None):
         """returns an integer that passes validation"""
         input_value = input(prompt)
-        while (min_value is not None and input_value > min_value or
-                min_value is None) and (max_value is not None and input_value < max_value
-        or max_value is None):
+        while (min_value is not None and int(input_value) > min_value or
+                min_value is None) and (max_value is not None and int(input_value) < max_value
+        or max_value is None) and type(input_value) == int:
             print("Invalid amount. Please re-enter:")
             input_value = input(prompt)
 
-        return input_value
+        return int(input_value)
 
     def process_command(self, command) -> bool:
         """Process user command to add items, view etc."""
@@ -23,6 +23,7 @@ class InventoryManager:
                                          1, 100)
             for x in range(quantity):
                 Inventory().add_item(item)
+            print("Successfully added item(s)")
             return True
         elif command == "remove":
             item = input('Enter item name: ')
@@ -30,6 +31,7 @@ class InventoryManager:
                                                     1, 100)
             for x in range(quantity):
                 Inventory().remove_item(item)
+
             return True
 
         elif command == "view":
