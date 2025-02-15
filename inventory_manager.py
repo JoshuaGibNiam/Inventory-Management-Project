@@ -42,6 +42,14 @@ class InventoryManager:
                 return False
             else:
                 return True
+        else:
+            print("Invalid command")
+            return False
+
+    def run(self):
+        command = input("What would you like to do (add/remove/view/exit?: ")
+        while self.process_command(command):
+            pass
 
 
 
