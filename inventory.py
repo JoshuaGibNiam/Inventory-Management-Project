@@ -1,4 +1,5 @@
 from item import Item
+import json
 class Inventory:
     def __init__(self):
         self.items = {}
@@ -30,6 +31,24 @@ class Inventory:
             print("End of inventory. \n")
         else:
             print("Inventory is empty.")
+
+    def load_inventory(self):
+        """load inventory from json file. If file does not exist (first time users),
+        Create a json file."""
+        try:
+            with open('inventory.json', 'r') as file:
+                self.items = json.load(file) #load items to inventory
+        except FileNotFoundError:
+            with open('inventory.json', 'a') as file:
+                self.items = {} #inventory remains empty
+
+    def save_inventory(self):
+        with open('inventory.json', 'w') as file:
+            json.dump(self.items, file)
+
+
+
+
 
 
 

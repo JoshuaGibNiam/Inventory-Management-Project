@@ -17,7 +17,7 @@ class InventoryManager:
 
     def process_command(self, command) -> bool:
         """Process user command to add items, view etc."""
-        if command == 'add':
+        if command == '1': #add
             item = input('Enter item name: ')
             quantity = self.validated_integer_input(f"How many {item}(s) would you like to add?",
                                          1, 100)
@@ -25,7 +25,7 @@ class InventoryManager:
                 self.inventory.add_item(item)
             print("Successfully added item(s)")
             return True
-        elif command == "remove":
+        elif command == "2": #remove
             item = input('Enter item name: ')
             if self.inventory.is_item(item):
                 quantity = self.validated_integer_input(f"How many {item}(s) would you like to remove?",
@@ -39,11 +39,11 @@ class InventoryManager:
                 print("Item does not exist")
                 return True
 
-        elif command == "view":
+        elif command == "3": #view
             self.inventory.view_inventory()
             return True
 
-        elif command == "exit":
+        elif command == "4": # exit
             confirmation = input("Are you sure you want to exit? (y/n) ")
             if confirmation == "y":
                 return False
@@ -55,7 +55,11 @@ class InventoryManager:
 
     def run(self):
         while True:
-            command = input("What would you like to do (add/remove/view/exit?: ")
+            command = input("What would you like to do?"
+                            "To add an item, enter {1}"
+                            "To remove an item, enter {2}"
+                            "To view all items, enter {3}"
+                            "To exit, enter {4}: ")
             if self.process_command(command):
                 pass
             else:
