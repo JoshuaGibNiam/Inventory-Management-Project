@@ -46,6 +46,7 @@ class InventoryManager:
         elif command == "4": # exit
             confirmation = input("Are you sure you want to exit? (y/n) ")
             if confirmation == "y":
+                self.inventory.save_inventory()
                 return False
             else:
                 return True
@@ -54,6 +55,7 @@ class InventoryManager:
             return True
 
     def run(self):
+        self.inventory.load_inventory()
         while True:
             command = input("What would you like to do?"
                             "To add an item, enter {1}"
