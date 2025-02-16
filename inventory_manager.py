@@ -17,7 +17,7 @@ class InventoryManager:
 
     def process_command(self, command) -> bool:
         """Process user command to add items, view etc."""
-        if command == '1': #add
+        if command == '1' or command == "add": #add
             item = input('Enter item name: ')
             quantity = self.validated_integer_input(f"How many {item}(s) would you like to add?",
                                          1, 100)
@@ -25,7 +25,8 @@ class InventoryManager:
                 self.inventory.add_item(item)
             print("Successfully added item(s)")
             return True
-        elif command == "2": #remove
+
+        elif command == "2" or command == "remove": #remove
             item = input('Enter item name: ')
             if self.inventory.is_item(item):
                 quantity = self.validated_integer_input(f"How many {item}(s) would you like to remove?",
@@ -39,11 +40,11 @@ class InventoryManager:
                 print("Item does not exist")
                 return True
 
-        elif command == "3": #view
+        elif command == "3" or command == "view": #view
             self.inventory.view_inventory()
             return True
 
-        elif command == "4": # exit
+        elif command == "4" or command == "exit": # exit
             confirmation = input("Are you sure you want to exit? (y/n) ")
             if confirmation == "y":
                 self.inventory.save_inventory()
@@ -57,11 +58,14 @@ class InventoryManager:
     def run(self):
         self.inventory.load_inventory()
         while True:
-            command = input("What would you like to do?"
-                            "To add an item, enter {1}"
-                            "To remove an item, enter {2}"
-                            "To view all items, enter {3}"
-                            "To exit, enter {4}: ")
+            print('\n\n')
+            command = input("What would you like to do?\n"
+                            "To add an item, enter {1}\n"
+                            "To remove an item, enter {2}\n"
+                            "To view all items, enter {3}\n"
+                            "To exit, enter {4}\n"
+                            "Enter (1-4):")
+            print("\n\n")
             if self.process_command(command):
                 pass
             else:

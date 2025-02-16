@@ -1,3 +1,4 @@
+import item
 from item import Item
 import json
 class Inventory:
@@ -36,15 +37,25 @@ class Inventory:
         """load inventory from json file. If file does not exist (first time users),
         Create a json file."""
         try:
-            with open('inventory.json', 'r') as file:
-                self.items = json.load(file) #load items to inventory
-        except FileNotFoundError:
-            with open('inventory.json', 'a') as file:
+            with open('.venv/inventory.json', 'r') as file:
+                self.items = json.load(file)
+                self.to_item()#load items to inventory
+        except (FileNotFoundError, json.JSONDecodeError):
+            with open('.venv/inventory.json', 'a') as file:
                 self.items = {} #inventory remains empty
 
     def save_inventory(self):
-        with open('inventory.json', 'w') as file:
+        self.to_dict()
+        with open('.venv/inventory.json', 'w') as file:
             json.dump(self.items, file)
+
+    def to_dict(self):
+        self.items = {key: {"name": item.name, "quantity": item.quantity}
+                      for key, item in self.items.items()}
+
+    def to_item(self):
+        self.items = {key: Item(item["name"], item["quantity"])
+                      for key, item in self.items.items()}
 
 
 
