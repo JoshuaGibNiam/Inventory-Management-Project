@@ -57,6 +57,12 @@ class Inventory:
         self.items = {key: Item(item["name"], item["quantity"])
                       for key, item in self.items.items()}
 
+    def rename_item(self, old_name, new_name):
+        quantity = self.items[old_name].quantity
+        del self.items[old_name]
+        self.items.update({new_name: Item(new_name, quantity)})
+
+
 
 
 
