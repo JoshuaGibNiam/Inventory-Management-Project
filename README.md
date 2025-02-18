@@ -35,4 +35,4 @@ This program consists of 3 classes, each in a separate file.
 4. main.py: Where the program will be run directly.
 
 ---
-Sunday, 16th of February 2024, 12:14 p.m.
+Sunday, 16th of February 2025, 12:14 p.m.
