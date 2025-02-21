@@ -39,8 +39,7 @@ class InventoryManager:
                 quantity = self.validated_integer_input(f"How many {item}(s) would you like to remove?",
                                                     1, 100)
 
-                for x in range(quantity):
-                    self.inventory.remove_item(item)
+                self.inventory.remove_item(item, quantity)
 
                 return True
             else:
